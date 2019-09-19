@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
+from product import views as pv  #引入product 里面的views
+from user import views as uv
+from car import views as cv
 
 # 路由处理函数, -MTV中的view 接收请求消息,返回响应消息
 def doLogin(req):
@@ -33,5 +36,7 @@ def doregister(req):
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('login',doLogin),
-    path('register',doregister)
+    path('register',doregister),
+    path('product/list',pv.doProductList),
+    path('product/detail',pv.doProductDetail)
 ]
