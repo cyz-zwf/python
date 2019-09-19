@@ -38,5 +38,5 @@ urlpatterns = [
     path('login',doLogin),
     path('register',doregister),
     path('product/list',pv.doProductList),
-    path('product/detail',pv.doProductDetail)
+    path('product/detail/<int:pid>/<laptoptype>',pv.doProductDetail) #路由传参<pid>也可以指定类型
 ]
