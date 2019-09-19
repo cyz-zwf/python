@@ -1,6 +1,7 @@
 # from django.shortcuts import render
 from django.http import HttpResponse
 import json   #引入json模块
+from django.http import JsonResponse  #导入json  比较简单的方法
 
 # Create your views here.
 
@@ -26,6 +27,8 @@ def doProductDetail(req,pid,laptoptype):   #http://.../product/detail/23/thin
     res = HttpResponse('商品详情<hr>')
     return res
 
+''' 
+demo1
 #路由处理函数 处理商品首页  
 def doproductIndex(req):
     data = [
@@ -41,3 +44,19 @@ def doproductIndex(req):
     res['Content-Type'] = 'application/json'
     res['Access-Control-Allow-Origin'] = '*'
     return res
+'''
+
+#demo2  
+def doproductIndex(req):
+    data = [
+        {'pid':101,'title':'笔记本','price':5000},
+        {'pid':102,'title':'笔记本2','price':6000},
+        {'pid':103,'title':'笔记本3','price':7000}
+    ]
+    # 构建一个json响应消息 无需手工执行对象序列化,无需设置内容类型为json
+    #只要输出的数据不是字典类型(Dict),就必须设置安全吗? safe=False 
+    #需要自己手动设置允许来源 即跨域请求
+    res = JsonResponse(data,safe=False) #不安全的转换
+    res['Access-Control-Allow-Origin'] = '*'
+    return res
+
