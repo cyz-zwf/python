@@ -15,7 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse
 
+# 路由处理函数, -MTV中的view 接收请求消息,返回响应消息
+def doLogin(req):
+    print('===服务器接收到一个login请求===')
+    res= HttpResponse('这是一个登陆 ')
+    return res
+
+# 路由处理韩式, 接收请求消息 返回响应消息
+def doregister(req):
+    print('===服务器接收到一个regist请求===')
+    res = HttpResponse('这是一个注册')
+    return res
+
+#路由词典:路由地址不能以 / 开头
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
+    path('login',doLogin),
+    path('register',doregister)
 ]
